@@ -6,7 +6,7 @@
     "cppcheck",
     "cpplint"
   ],
-  "version": "1.4.12",
+  "version": "1.4.13",
   "publisher": "sumfish",
   "engines": {
     "vscode": "^1.84.2"

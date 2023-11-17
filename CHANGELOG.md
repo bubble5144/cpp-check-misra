@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "cpp-checker" extension will be documented in this file.
+All notable changes to the "cpp-checker-misra" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
@@ -95,3 +95,28 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.4.8] - 2022-06-08
 ### Added
 - option cppcheck.-I
+- 
+## [v1.4.9] - 2022-10-19
+### Added
+- option cppcheck.--includes-file
+
+## [v1.4.10] - 2022-11-04
+### Changed
+- Fix option cppcheck.--suppressions-list
+
+## [v1.4.11] - 2023-11-17
+### Changed
+- update addon misra for own use.
+  
+## [v1.4.12] - 2023-11-17
+### Changed
+- publish.
+  
+## [v1.4.12] - 2023-11-17
+### Changed
+- publish.
+
+## [v1.4.13] - 2023-11-17
+### Changed
+- fix repo.
+  

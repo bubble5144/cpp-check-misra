@@ -12,13 +12,13 @@ let cpplint_obj = new cpplint.cpplint();
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	log.info('Congratulations, your extension "cpp-checker" is now active!');
-	let settings = vscode.workspace.getConfiguration('cpp-checker');
+	log.info('Congratulations, your extension "cpp-checker-misra" is now active!');
+	let settings = vscode.workspace.getConfiguration('cpp-checker-misra');
 	log.setLogLevel(settings.get('--log'));
 	if (settings.get('--enable') === true) {
-		log.info('start cpp-checker extension!');
+		log.info('start cpp-checker-misra extension!');
 	} else {
-		log.info('disable cpp-checker extension!');
+		log.info('disable cpp-checker-misra extension!');
 		return;
 	}
 	log.info("context.asAbsolutePath : " + context.extensionPath);
@@ -29,26 +29,26 @@ function activate(context) {
 
 	cpplint_obj.set_root_path(context.extensionPath);
 
-	let disposable = vscode.commands.registerCommand('cpp-checker.cppcheck', (url) => { cppcheck_obj.activate(context, url, true); });
+	let disposable = vscode.commands.registerCommand('cpp-checker-misra.cppcheck', (url) => { cppcheck_obj.activate(context, url, true); });
 	context.subscriptions.push(disposable);
-	disposable = vscode.commands.registerCommand('cpp-checker.cppcheckdir', (url) => { cppcheck_obj.activate(context, url, false); });
+	disposable = vscode.commands.registerCommand('cpp-checker-misra.cppcheckdir', (url) => { cppcheck_obj.activate(context, url, false); });
 	context.subscriptions.push(disposable);
-	disposable = vscode.commands.registerCommand('cpp-checker.cppcheckcmd', (url) => { cppcheck_obj.on_cmd(context, url); });
+	disposable = vscode.commands.registerCommand('cpp-checker-misra.cppcheckcmd', (url) => { cppcheck_obj.on_cmd(context, url); });
 	context.subscriptions.push(disposable);
 	disposable = vscode.languages.registerCodeActionsProvider(support_language, cppcheck_obj);
 	context.subscriptions.push(disposable);
 
-	disposable = vscode.commands.registerCommand('cpp-checker.cpplint', (url) => { cpplint_obj.activate(context, url, true); });
+	disposable = vscode.commands.registerCommand('cpp-checker-misra.cpplint', (url) => { cpplint_obj.activate(context, url, true); });
 	context.subscriptions.push(disposable);
-	disposable = vscode.commands.registerCommand('cpp-checker.cpplintdir', (url) => { cpplint_obj.activate(context, url, false); });
+	disposable = vscode.commands.registerCommand('cpp-checker-misra.cpplintdir', (url) => { cpplint_obj.activate(context, url, false); });
 	context.subscriptions.push(disposable);
-	disposable = vscode.commands.registerCommand('cpp-checker.cpplintcmd', (url) => { cpplint_obj.on_cmd(context, url); });
+	disposable = vscode.commands.registerCommand('cpp-checker-misra.cpplintcmd', (url) => { cpplint_obj.on_cmd(context, url); });
 	context.subscriptions.push(disposable);
 	disposable = vscode.languages.registerCodeActionsProvider(support_language, cpplint_obj);
 	context.subscriptions.push(disposable);
 
 	disposable = vscode.workspace.onDidChangeConfiguration(function (event) {
-		let new_settings = vscode.workspace.getConfiguration('cpp-checker');
+		let new_settings = vscode.workspace.getConfiguration('cpp-checker-misra');
 		log.setLogLevel(new_settings.get('--log'));
 		log.info("onDidChangeConfiguration");
 		cppcheck_obj.update_setting();
@@ -98,7 +98,7 @@ function activate(context) {
 function deactivate() {
 	cppcheck_obj.deactivate();
 	cpplint_obj.deactivate();
-	console.log('a oh, your extension "cpp-checker" is now deactivate!');
+	console.log('a oh, your extension "cpp-checker-misra" is now deactivate!');
 }
 
 module.exports = {

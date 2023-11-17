@@ -2,6 +2,7 @@ const vscode = require("vscode");
 let common = require("./common");
 let base = require("./base");
 const log = require('./log');
+const fs = require('fs');
 
 class cppcheck {
     constructor() {
@@ -31,7 +32,6 @@ class cppcheck {
             this.base.get_cfg(this.settings, "--std_c=", true, null, "--std="),
             this.base.get_cfg(this.settings, "--std_c++=", true, null, "--std="),
             this.base.get_cfg(this.settings, "--inline-suppr", true),
-            this.base.get_cfg(this.settings, "--suppressions-list=", true),
             this.base.get_cfg(this.settings, "--report-progress", true),
             this.base.get_cfg(this.settings, "--customargs=", false),
 
@@ -55,6 +55,16 @@ class cppcheck {
             }
         }
 
+        // We can't use the option --includes-file supported by cppcheck because the extension runs from the folder of the analyzed file, so the paths inside the file are not valid; this is why, instead, we include all folders one by one with -I option
+        let includes_file = this.base.get_cfg(this.settings, "--includes-file=", false, "");
+        if (!common.is_empty_str(includes_file)) {
+            // res.push("--includes-file=" + this.base.to_full_name(includes_file))
+            const data = fs.readFileSync(this.base.to_full_name(includes_file), 'utf8');
+            data.split(/\r?\n/).forEach(line =>  {
+                res.push("-I" + this.base.to_full_name(line));
+            });
+        }
+
         let suppress = this.base.get_cfg(this.settings, "--suppress=", false, []);
         if (0 != suppress.length) {
             for (let value of suppress) {
@@ -62,6 +72,25 @@ class cppcheck {
                     res.push("--suppress=" + value);
                 }
             }
+        }
+
+        // We can't use the option --suppressions-list supported by cppcheck because the extension runs from the folder of the analyzed file, so the paths inside the file are not valid; this is why, instead, we include all folders one by one with --suppress option
+        let suppressions_list = this.base.get_cfg(this.settings, "--suppressions-list=", false, "");
+        if (!common.is_empty_str(suppressions_list)) {
+            // res.push("--suppressions-list=" + this.base.to_full_name(suppressions-list))
+            const data = fs.readFileSync(this.base.to_full_name(suppressions_list), 'utf8');
+            data.split(/\r?\n/).forEach(line =>  {
+                if (!line.startsWith("//")){
+                    try {
+                        const splitLine = line.split(":");
+                        const misra_rule = splitLine[0];
+                        const file_paths = splitLine[1];
+                        res.push("--suppress=" + misra_rule + ":" + (file_paths.startsWith("*") ? file_paths : this.base.to_full_name(file_paths)));
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
         }
 
         let D = this.base.get_cfg(this.settings, "-D", false, []);
@@ -114,7 +143,7 @@ class cppcheck {
             for (let value of addon) {
                 if ("string" == typeof (value)) {
                     if (!common.is_empty_str(value)) {
-                        res.push("--addon=" + value);
+                        res.push("--addon=" + value);//TODO
                     }
                 }
                 else {
@@ -122,7 +151,7 @@ class cppcheck {
                     let workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
                     workspaceFolder = workspaceFolder.replace(/\\/g, "/")
                     addon_json = addon_json.replace("${workspaceFolder}", workspaceFolder)
-                    res.push("--addon=" + addon_json);
+                    res.push("--addon=" + addon_json);//TODO
                 }
             }
         }
@@ -132,7 +161,7 @@ class cppcheck {
     }
 
     update_setting() {
-        this.settings = vscode.workspace.getConfiguration('cpp-checker.cppcheck');
+        this.settings = vscode.workspace.getConfiguration('cpp-checker-misra.cppcheck');
         this.quick_fix = this.base.get_cfg_value(this.settings, "--quick_fix", false);
         this.onsave = this.base.get_cfg_value(this.settings, "--onsave", false);
         this.cmd_ary = this.get_cfg();

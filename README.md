@@ -1,10 +1,10 @@
 # cpp-checker
 
-[![GitHub release](https://img.shields.io/github/release/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/releases)
-[![GitHub license](https://img.shields.io/github/license/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/eBikeLabs/cpp-checker?style=plastic)](https://github.com/eBikeLabs/cpp-checker/stargazers)
-[![GitHub fork](https://img.shields.io/github/forks/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/eBikeLabs/cpp-checker.svg?style=plastic)](https://github.com/eBikeLabs/cpp-checker/issues)
+[![GitHub release](https://img.shields.io/github/release/bubble5144/cpp-checker-misra.svg?style=plastic)](https://github.com/bubble5144/cpp-checker-misra/releases)
+[![GitHub license](https://img.shields.io/github/license/bubble5144/cpp-checker-misra.svg?style=plastic)](https://github.com/bubble5144/cpp-checker-misra/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/bubble5144/cpp-checker-misra?style=plastic)](https://github.com/bubble5144/cpp-checker-misra/stargazers)
+[![GitHub fork](https://img.shields.io/github/forks/bubble5144/cpp-checker-misra.svg?style=plastic)](https://github.com/bubble5144/cpp-checker-misra/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/bubble5144/cpp-checker-misra.svg?style=plastic)](https://github.com/bubble5144/cpp-checker-misra/issues)
 
 A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lint)
 
@@ -162,7 +162,7 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 ## Known Issues
 
-* cpp-checker https://github.com/eBikeLabs/cpp-checker/issues
+* cpp-checker https://github.com/bubble5144/cpp-checker-misra/issues
 
 * cpplint : https://github.com/cpplint/cpplint/issues
 
@@ -170,9 +170,9 @@ A fork of [cpp-check-lint by QiuminGe](https://github.com/QiuminGe/cpp-check-lin
 
 ## Source code 
 
-* https://github.com/eBikeLabs/cpp-checker
+* https://github.com/bubble5144/cpp-checker-misra
 
-##  [Release Notes](https://github.com/eBikeLabs/cpp-checker/blob/main/CHANGELOG.md)
+##  [Release Notes](https://github.com/bubble5144/cpp-checker-misra/blob/main/CHANGELOG.md)
 
 -----------------------------------------------------------------------------------------------------------
 

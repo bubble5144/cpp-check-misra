@@ -107,3 +107,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [v1.4.11] - 2023-11-17
 ### Changed
 - update addon misra for own use.
+  
+## [v1.4.12] - 2023-11-17
+### Changed
+- publish.
+  
